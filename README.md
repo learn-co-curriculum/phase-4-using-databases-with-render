@@ -44,10 +44,10 @@ the default selection.
 
 Leave the remaining fields as they are.
 
+![Creating a new database](https://curriculum-content.s3.amazonaws.com/phase-4/deploying-rails-api/create-database.png)
+
 Finally, scroll down to the bottom of the page and click "Create Database."
 That's it!
-
-![Creating a new database](https://curriculum-content.s3.amazonaws.com/phase-4/deploying-rails-api/create-database.png)
 
 ## Using PSQL to execute database commands
 
@@ -173,8 +173,9 @@ will! — you can create [multiple separate databases in your PostgreSQL
 instance][multiple dbs]. We can't do this from the Render dashboard so we'll use
 PSQL, this time by running a SQL command.
 
-To create a database for a particular app, run the `CREATE DATABASE` SQL
-command:
+To create a database for a particular app, execute the `PSQL Command` to open
+the interactive terminal (if it isn't open already), then run the `CREATE
+DATABASE` SQL command:
 
 ```sql
 CREATE DATABASE database_name;
