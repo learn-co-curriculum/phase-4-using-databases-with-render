@@ -43,7 +43,12 @@ For "Region", you can either select the location closest to you or you can use
 the default selection.
 
 For "PostgreSQL Version", first you need to check which version you have on your
-local machine. Run `psql --version` anywhere in your terminal.
+local machine. Run `psql --version` anywhere in your terminal. The output should
+look something like this, but with your version instead:
+
+```bash
+psql (PostgreSQL) 14.x
+```
 
 ![Checking psql version](https://curriculum-content.s3.amazonaws.com/phase-4/deploying-rails-api/check-version.png)
 
