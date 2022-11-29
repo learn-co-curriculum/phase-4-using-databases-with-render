@@ -50,8 +50,6 @@ look something like this, but with your version instead:
 psql (PostgreSQL) 14.x
 ```
 
-![Checking psql version](https://curriculum-content.s3.amazonaws.com/phase-4/deploying-rails-api/check-version.png)
-
 Back in render, select the version you have from the dropdown.
 
 ![Creating a new database](https://curriculum-content.s3.amazonaws.com/phase-4/deploying-rails-api/create-database.png)
