@@ -42,7 +42,12 @@ or you can create those yourself if you prefer.
 For "Region", you can either select the location closest to you or you can use
 the default selection.
 
-Leave the remaining fields as they are.
+For "PostgreSQL Version", first you need to check which version you have on your
+local machine. Run `psql --version` anywhere in your terminal.
+
+![Checking psql version](https://curriculum-content.s3.amazonaws.com/phase-4/deploying-rails-api/check-version.png)
+
+Back in render, select the version you have from the dropdown.
 
 ![Creating a new database](https://curriculum-content.s3.amazonaws.com/phase-4/deploying-rails-api/create-database.png)
 
@@ -85,17 +90,17 @@ the up arrow to access the PSQL command and hit enter.
 
 ### Listing Databases
 
-To list the databases on your PostgreSQL instance, run the `\l` meta-command. You
-should see something like this:
+To list the databases on your PostgreSQL instance, run the `\l` meta-command.
+You should see something like this:
 
 ```console
                                               List of databases
-           Name           |        Owner        | Encoding |  Collate   |   Ctype    |   Access privileges   
+           Name           |        Owner        | Encoding |  Collate   |   Ctype    |   Access privileges
 --------------------------+---------------------+----------+------------+------------+-----------------------
- bird_app_db              | my_db_instance_user | UTF8     | en_US.UTF8 | en_US.UTF8 | 
- my_db_instance           | my_db_instance_user | UTF8     | en_US.UTF8 | en_US.UTF8 | 
- postgres                 | postgres            | UTF8     | en_US.UTF8 | en_US.UTF8 | 
- recipe_app_db            | my_db_instance_user | UTF8     | en_US.UTF8 | en_US.UTF8 | 
+ bird_app_db              | my_db_instance_user | UTF8     | en_US.UTF8 | en_US.UTF8 |
+ my_db_instance           | my_db_instance_user | UTF8     | en_US.UTF8 | en_US.UTF8 |
+ postgres                 | postgres            | UTF8     | en_US.UTF8 | en_US.UTF8 |
+ recipe_app_db            | my_db_instance_user | UTF8     | en_US.UTF8 | en_US.UTF8 |
  template0                | postgres            | UTF8     | en_US.UTF8 | en_US.UTF8 | =c/postgres          +
                           |                     |          |            |            | postgres=CTc/postgres
  template1                | postgres            | UTF8     | en_US.UTF8 | en_US.UTF8 | =c/postgres          +
@@ -122,8 +127,8 @@ To list the data tables in the currently selected database (in our case,
 \dt
 ```
 
-Because we don't have any data tables associated with our PostgreSQL
-instance directly, we get the following:
+Because we don't have any data tables associated with our PostgreSQL instance
+directly, we get the following:
 
 ```console
 Did not find any relations.
@@ -145,7 +150,7 @@ rather than `my_db_instance`. Now if we run `\dt` again, we'll see this:
 
 ```console
                       List of relations
- Schema |         Name         | Type  |        Owner        
+ Schema |         Name         | Type  |        Owner
 --------+----------------------+-------+---------------------
  public | ar_internal_metadata | table | my_db_instance_user
  public | birds                | table | my_db_instance_user
@@ -174,8 +179,8 @@ instance][multiple dbs]. We can't do this from the Render dashboard so we'll use
 PSQL, this time by running a SQL command.
 
 To create a database for a particular app, execute the `PSQL Command` to open
-the interactive terminal (if it isn't open already), then run the `CREATE
-DATABASE` SQL command:
+the interactive terminal (if it isn't open already), then run the
+`CREATE DATABASE` SQL command:
 
 ```sql
 CREATE DATABASE database_name;
@@ -187,10 +192,10 @@ your app. Be sure to include the semi-colon at the end of the command.
 Now if you run the `\l` command again, you should see that the new database has
 been added to the list of databases.
 
- > **Reminder**: The Render database page will only show information about the
- > PostgreSQL instance, not any databases you create within that instance. To
- > see information about any databases you add to your instance, you'll need to
- > use PSQL.
+> **Reminder**: The Render database page will only show information about the
+> PostgreSQL instance, not any databases you create within that instance. To see
+> information about any databases you add to your instance, you'll need to use
+> PSQL.
 
 ## Using Seed Data with a Database
 
@@ -203,7 +208,7 @@ create a build script that looked like this:
 set -o errexit
 
 bundle install
-bundle exec rake db:migrate 
+bundle exec rake db:migrate
 bundle exec rake db:seed
 ```
 
@@ -263,12 +268,12 @@ this lesson:
 
 ```console
                                               List of databases
-           Name           |        Owner        | Encoding |  Collate   |   Ctype    |   Access privileges   
+           Name           |        Owner        | Encoding |  Collate   |   Ctype    |   Access privileges
 --------------------------+---------------------+----------+------------+------------+-----------------------
- bird_app_db              | my_db_instance_user | UTF8     | en_US.UTF8 | en_US.UTF8 | 
- my_db_instance           | my_db_instance_user | UTF8     | en_US.UTF8 | en_US.UTF8 | 
- postgres                 | postgres            | UTF8     | en_US.UTF8 | en_US.UTF8 | 
- recipe_app_db            | my_db_instance_user | UTF8     | en_US.UTF8 | en_US.UTF8 | 
+ bird_app_db              | my_db_instance_user | UTF8     | en_US.UTF8 | en_US.UTF8 |
+ my_db_instance           | my_db_instance_user | UTF8     | en_US.UTF8 | en_US.UTF8 |
+ postgres                 | postgres            | UTF8     | en_US.UTF8 | en_US.UTF8 |
+ recipe_app_db            | my_db_instance_user | UTF8     | en_US.UTF8 | en_US.UTF8 |
  template0                | postgres            | UTF8     | en_US.UTF8 | en_US.UTF8 | =c/postgres          +
                           |                     |          |            |            | postgres=CTc/postgres
  template1                | postgres            | UTF8     | en_US.UTF8 | en_US.UTF8 | =c/postgres          +
@@ -296,8 +301,8 @@ making the edits to the string in your text editor then copy/pasting it into the
 terminal when you're done. (But remember not to push it up to Github!)
 
 The first part of the string, the password, will remain the same. The `psql`
-command should be updated to `pg_dump` instead. The host and username
-should also stay the same. After that, we'll add the following options:
+command should be updated to `pg_dump` instead. The host and username should
+also stay the same. After that, we'll add the following options:
 
 ```sh
 --format=custom --no-acl --no-owner
@@ -427,8 +432,8 @@ instance and not the instance itself, you can do that using PSQL:
 2. Run the SQL command to drop the database: `DROP DATABASE database_name;`. You
    should see 'DROP DATABASE' echoed in the terminal. If you don't, make sure
    you included the semicolon and that your PSQL connection hasn't timed out.
-3. Run the SQL command to create the new database: `CREATE DATABASE
-   database_name;`
+3. Run the SQL command to create the new database:
+   `CREATE DATABASE database_name;`
 4. In Render, connect the web service for the app to the new database and
    redeploy. If you used the same name for the database, you'll just need to
    redeploy.
@@ -465,10 +470,12 @@ Before you move on, make sure you can answer the following questions:
 - [Render Databases Guide][databases guide]
 - [Multiple Databases In A Single PostgreSQL Instance][multiple dbs]
 
-[Render dashboard]: https://dashboard.render.com/
+[render dashboard]: https://dashboard.render.com/
 [databases guide]: https://render.com/docs/databases
-[multiple dbs]: https://render.com/docs/databases#multiple-databases-in-a-single-postgresql-instance
+[multiple dbs]:
+  https://render.com/docs/databases#multiple-databases-in-a-single-postgresql-instance
 [psql]: https://www.postgresql.org/docs/current/app-psql.html
-[meta-commands]: https://www.postgresql.org/docs/9.2/app-psql.html#APP-PSQL-META-COMMANDS
+[meta-commands]:
+  https://www.postgresql.org/docs/9.2/app-psql.html#APP-PSQL-META-COMMANDS
 [pg_dump]: https://www.postgresql.org/docs/15/app-pgdump.html
 [pg_restore]: https://www.postgresql.org/docs/15/app-pgrestore.html
