@@ -46,7 +46,7 @@ For "PostgreSQL Version", first you need to check which version you have on your
 local machine. Run `psql --version` anywhere in your terminal. The output should
 look something like this, but with your version instead:
 
-```bash
+```console
 $ psql --version
 psql (PostgreSQL) 15.x
 ```
