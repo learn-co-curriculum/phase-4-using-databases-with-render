@@ -47,7 +47,8 @@ local machine. Run `psql --version` anywhere in your terminal. The output should
 look something like this, but with your version instead:
 
 ```bash
-psql (PostgreSQL) 14.x
+$ psql --version
+psql (PostgreSQL) 15.x
 ```
 
 Then, back in Render, select the version you have from the dropdown.
